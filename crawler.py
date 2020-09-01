@@ -3,7 +3,7 @@ import time
 import csv
 
 # Navigate to "Mua bán bất động sản"
-driver = webdriver.Chrome()
+driver = webdriver.Chrome("C:/Program Files/Google/Chrome/Application/chromedriver.exe")
 url = "https://muaban.net/"
 driver.get(url)
 time.sleep(1)
@@ -32,10 +32,10 @@ def getPostDetail():
         except:
             location = None
         item = {
-            'image': imageSource,
-            'title': postTitle,
-            'price': price,
-            'location': location
+            'Image': imageSource,
+            'Title': postTitle,
+            'Price': price,
+            'Location': location
         }
         listItems.append(item)
 
@@ -51,7 +51,7 @@ for page in range(1, pages):
 
 # Write data to .csv file
 with open('data_crawler.csv', mode='w', encoding="utf-8") as csv_file:
-    fieldnames = ['Image', 'Iitle', 'Price', 'Location']
+    fieldnames = ['Image', 'Title', 'Price', 'Location']
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
     writer.writeheader()
     for item in listItems:
